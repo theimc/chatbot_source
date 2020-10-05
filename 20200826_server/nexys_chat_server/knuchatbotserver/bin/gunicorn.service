@@ -1,0 +1,22 @@
+[Unit]
+Description=gunicorn
+After=network.target
+
+
+[Service]
+PIDFile=/run/gunicorn/pid
+User=root
+Group=root
+WorkingDirectory=/usr/local/nexys_chat_server/knuchatbotserver
+Environment="DJANGO_SETTINGS_MODULE=chat_bot_server.settings"
+ExecStart=/usr/local/bin/gunicorn chat_bot_server.wsgi --bind 0.0.0.0:8000 --log-level error --log-file=- --error-logfile /usr/local/nexys_chat_server/knuchatbotserver/logs/gunicorn.log --workers 5 --preload
+
+
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+Restart=on-abort
+PrivateTmp=true
+
+
+[Install]
+WantedBy=multi-user.target

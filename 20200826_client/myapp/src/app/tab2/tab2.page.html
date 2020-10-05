@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="tertiary">
+      Chats
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <ion-list>
+
+    <ion-item-sliding *ngFor="let item of userInfo.roomList" #slidingItem>
+      <ion-item (click)="joinRoom(item)">
+        <ion-avatar slot="start">
+          <img [src]="item.room_image[0]" />
+        </ion-avatar>
+		    <ion-label>
+          <h2><b>{{item.room_name}}</b></h2>
+		      <p>{{item.room_last_message}}</p>  
+		    </ion-label>
+		    <ion-avatar slot="end">
+		      <ion-label>
+            <p class="time">{{item.room_last_message_date}}</p>   
+		        <div class="count" color="danger" *ngIf="item.room_count != '0'"><b>{{item.room_count}}</b></div>
+		      </ion-label>
+        </ion-avatar>
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option color="dark" (click)="exitRoom(slidingItem, item)"><ion-icon name="exit"></ion-icon>Exit</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>

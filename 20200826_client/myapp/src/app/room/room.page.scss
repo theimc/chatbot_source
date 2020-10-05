@@ -1,0 +1,372 @@
+ion-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 90px 1px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+:host {
+    $userBackgroundColor: cornsilk;            
+    $toUserBackgroundColor: #fff;    
+
+    .send {
+        width: 8%;
+        ion-icon{
+            font-size: 300%;
+        }        
+    }
+
+    .btn-wrapper {
+        text-align: center;
+    }
+
+    @media (min-width: 768px), (min-height: 768px) {
+        .message-wrap {
+            padding: 0 10px;
+
+            .message {
+                position: relative;
+                padding: 7px 0;
+
+                .user-img {
+                    position: absolute;
+                    border-radius: 45px;
+                    width: 45px;
+                    height: 45px;
+                    box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
+                }
+
+                .msg-detail {
+                    width: 100%;
+                    display: inline-block;
+
+                    p {
+                        margin: 0;
+                    }
+                        
+                    .msg-info {
+                        p {
+                            font-size: .8em;
+                            color: #888;               
+                        }
+                    }
+
+                    .msg-content {
+                        position: relative;
+                        margin-top: 5px;
+                        border-radius: 5px;
+                        padding: 8px;
+                        border: 1px solid #ddd;                        
+                        width: auto;
+                        max-width: 80%;
+
+                        span.triangle {
+                            background-color: #fff;
+                            border-radius: 2px;
+                            height: 8px;
+                            width: 8px;
+                            top: 12px;
+                            display: block;
+                            border-style: solid;
+                            border-color: #ddd;
+                            border-width: 1px;
+                            -webkit-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                            position: absolute;
+                        }
+                    }
+                }
+            }
+
+            .message.left {
+                padding: 1%;
+
+                .msg-content {
+                    background-color: $toUserBackgroundColor;
+                    float: left;
+                    font-size: 25px;
+                }
+
+                .msg-detail {
+                    font-size: 20px;
+                    padding-left: 60px;
+                }
+
+                .user-img {
+                    left: 0;
+                }
+
+                .msg-content {
+                    color: #343434;
+                    
+                    span.triangle {
+                        border-top-width: 0;
+                        border-right-width: 0;
+                        left: -5px;
+                    }
+                }                
+            }
+
+            .message.right {            
+                .msg-detail {        
+                    .msg-info {
+                        font-size: 20px;                                                          
+                        text-align: right;                   
+                    }
+                }
+
+                .user-img {
+                    right: 0;
+                }
+
+                ion-spinner {
+                    position: absolute;
+                    right: 10px;
+                    top: 50px;
+                }
+
+                .msg-content {
+                    background-color: $userBackgroundColor;
+                    float: right;
+                    font-size: 25px;
+
+                    span.triangle {
+                        background-color: $userBackgroundColor;
+                        border-bottom-width: 0;
+                        border-left-width: 0;
+                        right: -5px;
+                    }
+                }
+            }
+
+            .ion-card {
+                border-radius: 25px;
+                width: 95%;
+                background-color: rgba(221, 221, 221, 0.3);
+                margin-top: 0%;
+                margin-bottom: 3%;
+                .system {     
+                    padding-bottom: 1%;
+                    padding-top: 1%;
+                    padding-left: 2%;
+                    padding-right: 2%;                
+                    width: 100%;                
+                    text-align: center;
+                    
+                    p {
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .ceslea {
+                margin-left: 0%;
+                margin-right: 0%;     
+                width: 100%;
+                
+                ion-item { 
+                    margin: -2%;               
+                    width: 100%;
+                    height: 100%;                
+                    font-size: 20px;                                                                
+                }                   
+
+                .cesMeg {
+                    p {                    
+                        font-size: 18px;                    
+                    }                
+                }
+                        
+                .msg-info {                
+                    float: right;
+                    color: #888;
+                }
+            }
+
+            .chatfile {
+                margin-left: 0%;
+                margin-right: 0%;     
+                width: 100%;
+                
+                ion-item { 
+                    margin: -2%;               
+                    width: 100%;
+                    height: 100%;                
+                    font-size: 20px;                                                                
+                }                   
+
+                .chatfileMeg {
+                    p {                    
+                        font-size: 18px;                    
+                    }                
+                }
+                        
+                .chatfile-info {                
+                    float: right;
+                    color: #888;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .system {
+            text-align: center;                
+        }
+
+        .message-wrap {
+            padding: 0 10px;
+                    
+            .ceslea {
+                width: 100%;
+                margin-left: 0%;
+                margin-right: 0%;                
+                
+                ion-item { 
+                    margin: -5%;
+                    width: 100%;
+                    height: 100%;                
+                    font-size: 20px;                                                                
+                }                   
+
+                .cesMeg {
+                    p {                    
+                        font-size: 18px;                    
+                    }                
+                }
+                        
+                .msg-info {                
+                    float: right;
+                    color: #888;
+                }
+            }
+
+            .ion-card {
+                border-radius: 25px;
+                width: 95%;
+                background-color: rgba(221, 221, 221, 0.3);
+                margin-top: 0%;
+                margin-bottom: 3%;
+                .system {     
+                    padding-bottom: 1%;
+                    padding-top: 1%;
+                    padding-left: 2%;
+                    padding-right: 2%;                
+                    width: 100%;                
+                    text-align: center;
+                    
+                    p {
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .message {
+                position: relative;
+                padding: 7px 0;
+                
+                .user-img {
+                    position: absolute;
+                    border-radius: 45px;
+                    width: 45px;
+                    height: 45px;
+                    box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
+                }
+        
+                .msg-detail {
+                    width: 100%;
+                    display: inline-block;
+                
+                    p {
+                    margin: 0;
+                    }
+                    .msg-info {
+                        p {
+                            font-size: .8em;
+                            color: #888;
+                        }
+                    }
+        
+                    .msg-content {
+                        position: relative;
+                        margin-top: 5px;
+                        border-radius: 5px;
+                        padding: 8px;
+                        border: 1px solid #ddd;
+                        //color: #fff;
+                        width: auto;
+                        max-width: 80%;
+                    
+                        span.triangle {
+                            background-color: #fff;
+                            border-radius: 2px;
+                            height: 8px;
+                            width: 8px;
+                            top: 12px;
+                            display: block;
+                            border-style: solid;
+                            border-color: #ddd;
+                            border-width: 1px;
+                            -webkit-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                            position: absolute;
+                        }
+                    }
+                }
+            }
+
+            .message.left {
+                padding: 1%;
+                .msg-content {
+                    background-color: $toUserBackgroundColor;
+                    float: left;
+                }
+                .msg-detail {
+                    padding-left: 60px;
+                }
+                .user-img {
+                    left: 0;
+                }
+                .msg-content {
+                    color: #343434;
+                    
+                    span.triangle {
+                        border-top-width: 0;
+                        border-right-width: 0;
+                        left: -5px;
+                    }
+                }
+            }
+
+            .message.right {            
+                .msg-detail {        
+                    .msg-info {                                                            
+                        text-align: right;                   
+                    }
+                }
+                .user-img {
+                    right: 0;
+                }
+                ion-spinner {
+                    position: absolute;
+                    right: 10px;
+                    top: 50px;
+                }
+                .msg-content {
+                    background-color: $userBackgroundColor;
+                    float: right;
+                    
+                    span.triangle {
+                        background-color: $userBackgroundColor;
+                        border-bottom-width: 0;
+                        border-left-width: 0;
+                        right: -5px;
+                    }
+                }      
+            }
+        }
+    }
+}

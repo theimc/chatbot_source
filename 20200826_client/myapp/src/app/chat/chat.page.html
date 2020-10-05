@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="tertiary">Friends</ion-title>  
+    <ion-buttons slot="start">
+       <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>    
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-xs="7" size-md="7">
+      <img class="profile" [src]="profileimg"/>      
+      <br><br>
+      <ion-item (click)="addStatusAlert()">
+        <div style="width: 100%; text-align: center;"><b>{{name}}</b>
+          <!--<ion-icon style="float:right" name="md-create"></ion-icon>-->
+        </div>             
+      </ion-item><br>
+      <ion-label>
+        <div style="width: 100%; text-align: center;">{{statusStr}}</div>
+      </ion-label>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>  
+<ion-footer>
+  <ion-toolbar>      
+    <div class="btn-wrapper">   
+      <p></p>
+      <ion-button color ="tertiary" (click)="startChat()">
+        <ion-icon name="ios-chatboxes"></ion-icon>     
+      </ion-button>
+      <ion-label>
+        <div style="width: 100%; text-align: center; font-weight: bold; font-size: 15px; color: gray;">1:1 채팅</div>
+      </ion-label>
+      <p></p>
+    </div>    
+  </ion-toolbar>
+</ion-footer>

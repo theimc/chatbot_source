@@ -1,0 +1,52 @@
+
+ion-slides {
+   height: 100%;
+   justify-content: center;
+}
+
+.login-page {     
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+.logo {
+    width: 80%;
+    height: 80%; 
+}
+
+.form {    
+    z-index: 1;
+    max-width: 80%;
+    width: 80% !important;
+    margin: 0 auto;        
+}
+
+.form input {
+    outline: 0;
+    width: 100%;
+    border: 0;        
+    font-size: 14px;    
+}
+
+.invalid {
+    border: 1px solid #ea6153;
+}
+
+.scroll-content{
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.profile {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    height: 50% !important;
+    width: 50% !important;
+    align-self: center;
+    align-content: center;
+}
+
+.submitAttempt {
+    font-size: 14px;
+    color: #ea6153;
+}	

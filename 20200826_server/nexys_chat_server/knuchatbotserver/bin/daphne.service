@@ -1,0 +1,20 @@
+[Unit]
+Description=daphne daemon
+After=network.target
+
+
+[Service]
+PIDFile=/run/daphne/pid
+User=root
+Group=root
+WorkingDirectory=/usr/local/nexys_chat_server/knuchatbotserver
+Environment="DJANGO_SETTINGS_MODULE=chat_bot_server.settings"
+ExecStart=/usr/local/bin/daphne --bind 0.0.0.0 --port 9000 --verbosity 0 chat_bot_server.asgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+Restart=on-abort
+PrivateTmp=true
+
+
+[Install]
+WantedBy=multi-user.target

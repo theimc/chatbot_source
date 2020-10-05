@@ -1,0 +1,17 @@
+=======
+챗 서버 구동
+knuchatbotserver.zip 압축 해제 후, README.md 참조
+=======
+chatbot_controller
+1. 'nexys_chatbot_controller.zip' 압축을 풀어서 'chatbot' 폴더에 'nexys' 폴더 이동
+2. 'nexys.json'는 'public/config'로 이동
+ - json 파일의 계정은 knuchatbotserver 안의 README.md 파일에서 지시한 
+   30번째 줄의 "python3 manage.py createsuperuser" 로 만드는 슈퍼계정과 일치 하여야 됨.
+3. 'bin/www' 파일 수정
+ - const {nexys_init} = require('../chatbot/nexys/run');
+   
+   nexys_init();
+=======
+주의: 'nexys' 폴더 안에 들어있는 'run', 'HttpService', 'Eventhandler'는 'tmup' 폴더안의 파일들과 호환 되지 않음.
+      < 'ChatbotService.js' / 'RedisService.js'는 공용 사용 => 현재 tmup의 경로로 사용 중
+       ex) const redisService = require('../tmup/RedisService'); >

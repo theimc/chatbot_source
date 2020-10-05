@@ -1,0 +1,211 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="tertiary">{{roomInfo.getRoomName()}}</ion-title>  
+    <ion-buttons slot="start">
+       <ion-back-button defaultHref="/app/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+	<ion-buttons slot="end">
+      <!-- Input Device Toggle -->
+
+      <ion-button icon-only (click)="getCalendar(roomInfo)">
+        <ion-icon name="ios-calendar"></ion-icon>
+      </ion-button> 
+
+      <ion-button icon-only (click)="reportMessage()">
+          <ion-icon name="document"></ion-icon>
+      </ion-button>
+
+      <!-- Menu Toggle -->
+      <ion-button icon-only (click)="menuToggle()">
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-list>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content 
+			pullingIcon="none" 
+			refreshingSpinner="circles">
+		</ion-refresher-content>
+  </ion-refresher>  
+
+  <div class="message-wrap">  
+     <div #allTheseThings *ngFor="let message of messages; let last = last"
+        class="message" 
+        [class.left]=" message.author != userId"
+        [class.right]=" message.author == userId">      
+                
+        <ion-card class="ion-card" *ngIf="message.type != 'message' && message.type != 'file'">
+          <div class="system">
+            <p>{{message.content}}</p>
+          </div>
+        </ion-card>
+      
+        <div class="msg-detail" *ngIf="message.author != 'ceslea' && message.type == 'message'">
+          <img class="user-img" alt="" [src]="message.profile_image" *ngIf="message.author != userId">
+          <p *ngIf="message.author != userId"><b>{{message.author}}</b></p>
+          
+          <div class="msg-info">
+            <p>{{message.created_at}}</p>          
+          </div>
+          
+          <div class="msg-content">
+            <span class="triangle"></span>
+            <p class="line-breaker ">{{message.content}}</p>
+            <img class="user-img" alt="" src="../../assets/imgs/sentimet00.jpg" *ngIf="message.emotion == '0' && message.emotion != ''">
+            <img alt="" src="../../assets/imgs/sentimet01.jpg" height="100px" width="100px" *ngIf="message.emotion == '1' && message.emotion != ''">
+            <img alt="" src="../../assets/imgs/sentimet02.jpg" height="100px" width="100px" *ngIf="message.emotion == '2' && message.emotion != ''">
+            <img alt="" src="../../assets/imgs/sentimet03.jpg" height="100px" width="100px" *ngIf="message.emotion == '3' && message.emotion != ''">
+            <img alt="" src="../../assets/imgs/sentimet04.jpg" height="100px" width="100px" *ngIf="message.emotion == '4' && message.emotion != ''">
+            <img alt="" src="../../assets/imgs/sentimet05.jpg" height="100px" width="100px" *ngIf="message.emotion == '5' && message.emotion != ''">
+            <img alt="" src="../../assets/imgs/sentimet06.jpg" height="100px" width="100px" *ngIf="message.emotion == '6' && message.emotion != ''">
+          </div>   
+        </div>
+
+        <div *ngIf="message.intent != null && message.intent != '0' && message.intent != ''">
+          <ion-card class="ceslea" *ngIf="message.author != 'ceslea' && message.type == 'message'">
+            <ion-card-header>
+              <ion-item>
+                <img alt="" src="../../assets/icon/ceslea3.png">  
+              </ion-item>
+            </ion-card-header>
+
+            <ion-card-content (click)="openBrowser(message.intentdata)">
+              <div class="cesMeg">
+                <p>{{message.intentdata}}</p>
+              </div>
+              <div class="cesMeg-info">
+                <br>
+                <p class="msg-info">{{message.created_at}}</p>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
+            
+        <ion-card class="ceslea" *ngIf="message.author == 'ceslea' && message.type == 'message'">
+          <ion-card-header>
+            <ion-item>
+              <!--<ion-avatar item-start>
+                <img alt="" src="../../assets/icon/ceslea.png" width="200px" height="50px">                
+              </ion-avatar>             
+              <b>CESLeA</b>-->
+              <!--<img alt="" src="../../assets/icon/ceslea3.png">-->
+              <b>CESLeA</b>  
+            </ion-item>
+          </ion-card-header>
+    
+          <ion-card-content>
+            <div class="cesMeg">
+              <p>{{message.content}}</p>
+            </div>
+            <div class="cesMeg-info">
+              <br>
+              <p class="msg-info">{{message.created_at}}</p>
+            </div>
+          </ion-card-content>
+        </ion-card>      
+
+        <div class="msg-detail" *ngIf="message.author != 'ceslea' && message.type == 'file'">
+          <img class="user-img" alt="" [src]="message.profile_image" *ngIf="message.author != userId">
+          <p *ngIf="message.author != userId"><b>{{message.author}}</b></p>
+          
+          <div class="msg-info">
+            <p>{{message.created_at}}</p>          
+          </div>
+          
+          <div class="msg-content">
+            <span class="triangle"></span>
+            <img alt="" [src]="message.content" height="150px" width="150px" *ngIf="message.emotion == '0' && message.emotion != ''">
+            <img alt="" src="../../assets/imgs/empty_file.png" height="150px" width="150px" *ngIf="message.emotion == '1' && message.emotion != ''">
+            <br>
+            <div class="msg-info">
+              <p>{{message.intentdata}}</p> 
+            </div>
+          </div> 
+          <div *ngIf="message.author != userId">
+            <ion-button icon-only (click)="getDownload(message.content)">
+              <ion-icon name="ios-download"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+
+        <!-- <ion-card class="chatfile" *ngIf="message.type == 'file'">
+          <ion-card-header>
+            <ion-item>
+              <b>File Info</b>  
+              <ion-button icon-only (click)="getDownload(message.content)" style="float: right;">
+                <ion-icon name="arrow-down-outline"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-card-header>
+    
+          <ion-card-content>
+            <div class="msg-content">
+              <span class="triangle"></span>
+              <img alt="" [src]="message.content" height="300px" *ngIf="message.emotion == '0' && message.emotion != ''">
+              <img alt="" src="../../assets/imgs/empty_file.png" height="150px" *ngIf="message.emotion == '1' && message.emotion != ''">
+            </div>
+            <div class="chatfileMeg">
+              <br><br>
+              <p style="float: right; color: #888;">{{message.created_at}}</p>
+            </div>
+          </ion-card-content>
+        </ion-card> -->
+
+      </div>
+  </div> 
+  <ion-infinite-scroll slot="fixed" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>    
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>      
+    <div class="btn-wrapper">     
+      <div class="Mic" *ngIf="device">        
+        <!-- Rec Off -->
+          <ion-button clear icon-only (click)="showAttachFileModal()" style="float: left; padding-left:10px;">
+            <ion-icon name="add-circle"></ion-icon>
+          </ion-button>   
+
+          <ion-button clear icon-only (click)="deviceToggle()" style="float: left; padding-left:5px;">
+            <ion-icon name="keypad"></ion-icon>
+          </ion-button>
+          
+           <ion-button clear icon-only (click)="startRecording()" *ngIf="!isRecording" style="padding-right:80px;">
+            <ion-icon name="mic"></ion-icon>
+          </ion-button>
+
+          <!-- Rec On -->
+          <ion-button clear icon-only (click)="stopRecording()" *ngIf="isRecording" style="padding-right:80px;">
+            <ion-spinner name="dots"></ion-spinner>
+          </ion-button>
+         
+      </div>
+
+      <div class="Keyboard" *ngIf="!device">             
+        <!-- Keyboard -->
+        <ion-item no-lines>     
+          <ion-button clear icon-only (click)="showAttachFileModal()">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </ion-button>   
+          <ion-button clear icon-only (click)="deviceToggle()">
+            <ion-icon name="ios-mic-off"></ion-icon>
+          </ion-button>
+          <ion-col size-xs="1" size-md="1"></ion-col>
+          <ion-input #input type="text" placeholder="Message" [(ngModel)]="message" (ionFocus)="checkFocus($event)"></ion-input>
+          <ion-col size-xs="1" size-md="1"></ion-col>
+          <ion-button class="send" icon-only clear item-right (click)="sendMessage()" [disabled]="message == ''">
+            <ion-icon name="ios-send" [color]="message == ''? 'dark' : 'dark'"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </div>
+    </div>    
+  </ion-toolbar>
+</ion-footer>

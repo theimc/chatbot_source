@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title color="tertiary">invite</ion-title>  
+	  <ion-buttons slot="start">
+       <ion-back-button defaultHref="/room"></ion-back-button>
+	  </ion-buttons>
+      <ion-buttons slot="end">          
+        <ion-button expand="full" class="shadow-red" shape="round" (click)="invite()">Invite</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  
+  </ion-header>
+  
+  <ion-content>
+    <br>
+    <ion-searchbar
+      [(ngModel)]="myInput"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="onInput($event)"
+      (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+  
+    <ion-list>
+      <ion-list-header>
+        Friends
+      </ion-list-header>
+      
+      <ion-item *ngFor="let friend of friends">
+        <ion-avatar item-start>
+          <img [src]="friend.profile_image"/>
+        </ion-avatar>
+        <ion-label color="dark">{{friend.id}}</ion-label>
+        <ion-checkbox mode="ios" (ionChange)="updateSelect(friend.id, $event)" item-right [disabled]="checkboxDisable(friend)"></ion-checkbox>
+      </ion-item>    
+      <p></p>
+    </ion-list>
+</ion-content>  

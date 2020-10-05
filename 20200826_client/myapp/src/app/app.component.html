@@ -1,0 +1,80 @@
+<ion-app>
+  <ion-menu side="end" id="roomMenu" contentId="content" (ionOpen)="menuOpened()" (ionClose)="menuClosed()" type="push">
+    <ion-content>
+        <ion-list>
+            <ion-item-divider>
+                Settings
+            </ion-item-divider>
+            <!--<ion-item>
+                <ion-icon name="ios-megaphone" slot="start"></ion-icon>
+                <ion-label>Text To Speech</ion-label>
+                <ion-toggle mode="ios" color="secondary" [(ngModel)]="roomInfo.ttsOption" (ionChange)="changeTTS($event)"></ion-toggle>
+            </ion-item>-->
+
+            <ion-item>
+                <ion-icon name="logo-angular" slot="start"></ion-icon>
+                <ion-label>Select language</ion-label>
+                <ion-select [(ngModel)]="roomInfo.lan" (ionChange)="changeLanMode($event)">
+                    <ion-select-option value="ko-KR">Korean</ion-select-option>
+                    <ion-select-option value="en-US">English</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon name="logo-python" slot="start"></ion-icon>
+                <ion-label color="dark">CESLeA</ion-label>
+                <ion-select [(ngModel)]="roomInfo.mode" (ionChange)="changeMode($event)">
+                    <ion-select-option value="MAX">Max</ion-select-option>
+                    <ion-select-option value="SEMI">Semi</ion-select-option>
+                    <ion-select-option value="LOCK">Lock</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon name="ios-list-box" slot="start"></ion-icon>
+                <ion-label >Category</ion-label>
+                <ion-select [(ngModel)]="roomInfo.category" (ionChange)="changeCategoryMode($event)">
+                    <ion-select-option value="chitchat-en">일상대화(영어)</ion-select-option>
+                    <ion-select-option value="scenario-en">시나리오(영어)</ion-select-option>
+                    <ion-select-option value="travel-en">여행(영어)</ion-select-option>
+                    <ion-select-option value="chest-ko">진단(한국어)</ion-select-option>
+                    <ion-select-option value="gag-ko">개그(한국어)</ion-select-option>
+                    <ion-select-option value="scenario-ko">시나리오(한국어)</ion-select-option>
+                    <ion-select-option value="silver-ko">실버(한국어)</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item-divider>
+                Participants
+            </ion-item-divider>  
+            
+		    <ion-item>
+				<ion-button (click)="invitePage()" slot="end">
+					<ion-icon name="add" slot="end"></ion-icon>
+					Invite
+				</ion-button>
+			</ion-item>    
+            <ion-item>
+                <ion-avatar item-start>
+                    <img [src]="userInfo.profile"/>
+                </ion-avatar>
+                <p class="ion-padding">{{userInfo.userId}}</p>
+            </ion-item>    
+            <ion-item *ngFor="let participant of roomInfo.participants">
+                <ion-avatar item-start>
+                    <img [src]="participant.profile_image"/>
+                </ion-avatar>
+                <p class="ion-padding">{{participant.id}}</p>                 
+            </ion-item>
+            <p></p>
+        </ion-list>        
+    </ion-content>
+	<ion-footer style="text-align: center;">            
+		<ion-button color="dark" full icon-only clear (click)="exitRoom()">
+			<ion-icon name="exit" slot="end"></ion-icon>
+			Exit
+		</ion-button>                          
+	</ion-footer>
+  </ion-menu>
+  <ion-router-outlet id="content"></ion-router-outlet>
+</ion-app>

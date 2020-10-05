@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title color="tertiary">Profile</ion-title>  
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+     </ion-buttons>
+  </ion-toolbar>
+</ion-header>  
+<ion-content>    
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-xs="7" size-md="7">
+        <img class="profile" [src]="imageData" *ngIf="imageData"/>
+        <!--<img class="profile" src="{{imageData}}"/>-->
+        <ion-label>
+          <div style="width: 100%; text-align: center;"><h1>{{name}}</h1></div>
+        </ion-label><br>
+        <ion-item> 
+          <div style="width: 100%; text-align: center;">{{statusStr}}</div> 
+        </ion-item>               
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button (click)="setMeChat()">
+      <ion-icon name="ios-chatbubbles"></ion-icon>
+      <ion-label>me chat</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)="showPhotoModal()">
+      <ion-icon name="md-photos"></ion-icon>
+      <ion-label>Photo</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)="changeProfileStatus()">
+      <ion-icon name="ios-create"></ion-icon>
+      <ion-label>profile</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

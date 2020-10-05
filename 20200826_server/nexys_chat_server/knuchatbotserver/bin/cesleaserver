@@ -1,0 +1,39 @@
+server {
+    #client_max_body_size 30M;
+    listen 8080;
+    server_name 0.0.0.0;
+
+    location / {
+        proxy_pass http://0.0.0.0:8000;
+     	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+     	proxy_set_header Host $http_host;
+	    proxy_set_header X-Real-IP $remote_addr;
+    	proxy_redirect off;
+    }
+
+    location /chat {
+            proxy_pass http://0.0.0.0:9000;
+            proxy_http_version 1.1;
+
+            proxy_read_timeout 86400;
+            proxy_redirect     off;
+
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Host $server_name;
+    }
+
+    error_log /usr/local/nexys_chat_server/knuchatbotserver/log/nginx-error.log;
+
+    # S3와 같은 미디어 서버를 사용한다면 아래 2개는 작성하지 않아도 된다.
+    location /static/ {
+        alias /usr/local/nexys_chat_server/knuchatbotserver/static/;
+    }
+
+    location /media/ {
+        alias /usr/local/nexys_chat_server/knuchatbotserver/media/;
+    }
+}

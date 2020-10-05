@@ -1,0 +1,14 @@
+django==2.1.3
+django-redis==4.10.0
+
+channels==2.1.5
+channels_redis==2.2.1
+django-cors-headers==2.4.0
+
+psycopg2-binary==2.7.4
+
+gunicorn==19.9.0
+daphne==2.2.3
+
+celery==4.2.1
+redis==3.0.1

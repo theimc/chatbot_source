@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title color="tertiary">Calendar</ion-title>  
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+     </ion-buttons>
+  </ion-toolbar>
+</ion-header>  
+<ion-content>    
+  <ion-calendar [(ngModel)]="date"
+      (onChange)="onChange($event)"
+      [type]="type"
+      [options] = "options"
+      [format]="'YYYY-MM-DD'">
+    </ion-calendar>
+
+</ion-content>

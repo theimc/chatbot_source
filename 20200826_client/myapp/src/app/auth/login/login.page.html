@@ -1,0 +1,83 @@
+<ion-content class="ion-padding">
+  <ion-slides>
+    <!-- Server Ip Setting -->
+    <ion-slide>
+      <ion-list class="form">
+        <form [formGroup]="serverForm">
+          <ion-item>
+		        <ion-input formControlName="ServerIp" [(ngModel)]="serverIp" type="text" placeholder="Server Ip" name="serverIp"></ion-input>
+          </ion-item>
+          <br />
+        </form>      
+        <ion-button color="tertiary" expand="full" shape="round" (click)="saveServerIp()">Save</ion-button>
+      </ion-list>
+    </ion-slide>
+  
+    <!-- Login -->
+    <ion-slide>
+      <ion-list class="form">	
+		    <img class="logo" src="/assets/imgs/loginLogo.jpg"/>
+	
+        <form [formGroup]="loginForm">		 
+          <ion-item>
+            <ion-input formControlName="UserId" [(ngModel)]="loginUserId" name="loginUserId" type="email" placeholder="Email"></ion-input>
+          </ion-item>      
+          <ion-item>
+            <ion-input formControlName="Password" [(ngModel)]="loginPassword" name="loginPassword" type="password" placeholder="Password"></ion-input>
+          </ion-item>                      
+          <br />
+        </form>  
+        <ion-button color="tertiary" expand="block" shape="round" (click)="login()">
+          login
+        </ion-button>
+        <p></p>
+        <ion-button color="dark" expand="block" shape="round" (click)="googleLogin()">
+          <ion-icon name="logo-googleplus"></ion-icon>google login
+        </ion-button>
+        <p></p>
+        <ion-button color="secondary" expand="block" shape="round" (click)="facebookLogin()">
+          <ion-icon name="logo-facebook"></ion-icon>facebook login
+        </ion-button>
+        
+        <p *ngIf="loginAttempt == 1" class="submitAttempt">Please input userId.</p>
+        <p *ngIf="loginAttempt == 2" class="submitAttempt">Please input password.</p>
+        <p *ngIf="loginAttempt == 3" class="submitAttempt">Please fill out all details accurately.</p>
+        
+      </ion-list>      
+      
+    </ion-slide>
+  
+    <!-- Register -->
+    <ion-slide>
+      <ion-list class="form">
+        <div>
+          <img class="profile" [src]="imageData" *ngIf="imageData"/>   
+        </div>
+        <form [formGroup]="registerForm">          
+          <ion-item>
+            <ion-input formControlName="UserId" [(ngModel)]="registerUserId" name="registerUserId" type="email" placeholder="Email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input formControlName="UserName" type="text" [(ngModel)] ="registerUserName" name="registerUserName" placeholder="User Name"></ion-input>
+          </ion-item>          
+          <ion-item>
+            <ion-input formControlName="Password" [(ngModel)]="registerPassword" name="registerPassword" type="password" placeholder="Password"></ion-input>
+          </ion-item>   
+          
+          <ion-item>
+              <ion-input formControlName="PasswordConf" [(ngModel)]="registerPasswordConf" name="registerPasswordConf" type="password"  placeholder="Password Confirmation"></ion-input>
+            </ion-item>
+          <br />
+        </form>  
+  
+        <ion-button color="tertiary" expand="full" shape="round" (click)="register()" >Sign Up</ion-button>
+  
+        <p *ngIf="registerAttempt == 0" class="submitAttempt" style="color: #ea6153;">Please provide a valid userId.</p>
+        <p *ngIf="registerAttempt == 1" class="submitAttempt" style="color: #ea6153;">Please provide a valid name.</p>
+        <p *ngIf="registerAttempt == 2" class="submitAttempt" style="color: #ea6153;">Please provide a valid password.</p>
+        <p *ngIf="registerAttempt == 3" class="submitAttempt" style="color: #ea6153;">Password confirmation doesn't match password.</p>
+        <p *ngIf="registerAttempt == 4" class="submitAttempt" style="color: #ea6153;">UserId has already been taken.</p>
+      </ion-list>      
+    </ion-slide>
+  </ion-slides>
+</ion-content>

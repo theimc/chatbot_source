@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="tertiary">
+      Friends
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item no-lines>
+      <ion-avatar slot="start">
+        <img [src]="user.profile" />
+      </ion-avatar>
+	  <ion-label (click)="setProfile(user)">
+      <h2><b>{{ user.userName }}</b></h2>
+      <p *ngIf=" user.status != ''">{{ user.status }}</p> 
+      <p *ngIf=" user.status == ''">Hello!!</p> 
+	  </ion-label>
+    </ion-item>
+    
+    <p></p>    
+    <ion-searchbar [(ngModel)]="searchQuery" (ionChange)="onSearchTerm($event)" placeholder="Search an friends"></ion-searchbar>
+     
+    <ion-item-divider>
+      Friends
+    </ion-item-divider>
+
+    <ion-item-sliding *ngFor="let friend of friends" #slidingItem>      
+      <ion-item>
+        <ion-avatar slot="start">
+          <img [src]="friend.profile_image"/>
+        </ion-avatar>
+        <ion-label (click)="joinChatRoom(friend)">
+        <h2><b>{{friend.is_name}}</b></h2>
+        <p *ngIf=" friend.status_message != ''">{{friend.status_message}}</p> 
+        <p *ngIf=" friend.status_message == ''">Hello!!</p> 
+        </ion-label>
+      </ion-item>  
+
+      <ion-item-options>
+        <ion-item-option color="dark" (click)="joinRoom(slidingItem, friend)"><ion-icon name="ios-chatbubbles"></ion-icon>Chat</ion-item-option>
+        <ion-item-option color="danger" (click)="deleteFriend(slidingItem, friend)"><ion-icon name="ios-trash"></ion-icon>Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+        
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" #fabItem>
+    <ion-fab-button color="tertiary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="addFriends(fabItem)">
+        <ion-icon name="person-add"></ion-icon>
+      </ion-fab-button>	  
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button (click)="addGroupAlert(fabItem)">
+        <ion-icon name="ios-browsers"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>    
+  </ion-fab>
+</ion-content>

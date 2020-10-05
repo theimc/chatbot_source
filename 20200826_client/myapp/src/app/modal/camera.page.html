@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color="dark" (click)="closeModal('5')">
+          <ion-icon name="md-close"></ion-icon>
+       </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-xs="12" size-md="12">
+        <ion-item>
+          <div style="width: 100%; text-align: center;">
+            <ion-button color="dark" expand="block" fill="clear" (click)="closeModal('1')">
+              <ion-icon slot="icon-only" name="ios-contact"></ion-icon> 
+              <p class="ion-padding">default photo</p>
+            </ion-button>
+          </div>
+        </ion-item>
+      
+        <ion-item>
+          <div style="width: 100%; text-align: center;">
+            <ion-button color="dark" expand="block" fill="clear" (click)="closeModal('2')">
+              <ion-icon slot="icon-only" name="ios-camera"></ion-icon> 
+              <p class="ion-padding">take a picture</p>
+            </ion-button>  
+          </div>
+        </ion-item>
+  
+        <ion-item>
+          <div style="width: 100%; text-align: center;">
+            <ion-button color="dark" expand="block" fill="clear" (click)="closeModal('3')">
+              <ion-icon slot="icon-only" name="ios-images"></ion-icon>
+              <p class="ion-padding">take a gallery</p>
+            </ion-button> 
+          </div>
+        </ion-item>
+  
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>      
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-xs="12" size-md="12">
+        <ion-item lines="none">
+          <div style="width: 100%; text-align: center;">
+            <ion-button color="dark" (click)="closeModal('5')" style="width: 100%;">Cancel</ion-button>
+          </div>
+        </ion-item> 
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
